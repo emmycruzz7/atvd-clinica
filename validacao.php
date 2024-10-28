@@ -1,51 +1,49 @@
 <?php
-
-$servename = "localhost";
+$servername = "localhost";
 $username = "root";
 $password = "@emmycruz15";
 $dbname = "clinica";
 
-$conn = new mysqli($servename, $username, $password, $dbname);
+// Conexão com o banco de dados
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-if ($conn->connect_error){
-    die("conexão falhou: ". $conn->connect_error);
+if ($conn->connect_error) {
+    die("Conexão falhou: " . $conn->connect_error);
 }
 
-//conexao banco de dados
+// Captura de dados do formulário
+$nome = isset($_POST['nome']) ? $_POST['nome'] : '';
+$data_nascimento = isset($_POST['data_nascimento']) ? $_POST['data_nascimento'] : '';
+$email = isset($_POST['email']) ? $_POST['email'] : '';
+$telefone = isset($_POST['telefone']) ? $_POST['telefone'] : '';
+$endereco = isset($_POST['endereco']) ? $_POST['endereco'] : '';
+$sexo = isset($_POST['sexo']) ? $_POST['sexo'] : '';
 
-
-$nome = $_POST['nome'];
-$data_nascimento = $_POST['data_nascimento'];
-$email = $_POST['email'];
-$telefone = $_POST['telefone'];
-$endereco = $_POST['endereco'];
-$sexo = $_POST['sexo'];
-//captura de dados do formulário
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+// Validação do e-mail
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     die("E-mail inválido.");
 }
 
+// Validação do telefone
 if (!preg_match("/^[0-9]{10,11}$/", $telefone)) {
-    die("Telefone deve cconter apenas números e ter 10 ou 11 dígitos");
-
+    die("Telefone deve conter apenas números e ter 10 ou 11 dígitos.");
 }
-//validação do email e telefone
 
+// Validação da idade
 $dataAtual = new DateTime();
-$dataNasc = new DateTime();
+$dataNasc = new DateTime($data_nascimento);
 $idade = $dataAtual->diff($dataNasc)->y;
 
-if ($idade < 18){
+if ($idade < 18) {
     die("Paciente deve ser maior de idade.");
 }
-//validção para verificar  se é maior de  idade
 
-$sql = "INSERT INTO pacientes (nome, data_nascimento, email, telefone, endereco, sexo) VALUES ('$nome', '$data_nascimento', '$email', '$endereco', '$sexo')";
+// Inserção dos dados no banco de dados
+$sql = "INSERT INTO pacientes (nome, data_nascimento, email, telefone, endereco, sexo) VALUES ('$nome', '$data_nascimento', '$email', '$telefone', '$endereco', '$sexo')";
 
-if ($conn->query($sql) === TRUE){
-
+if ($conn->query($sql) === TRUE) {
     echo "Cadastro realizado com sucesso!";
-}else{
+} else {
     echo "Erro: " . $sql . "<br>" . $conn->error;
 }
 
