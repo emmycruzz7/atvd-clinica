@@ -7,21 +7,27 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #006400; /* Fundo verde escuro */
+            background: url('https://png.pngtree.com/background/20230827/original/pngtree-3d-rendering-of-a-hospital-s-indoor-corridor-picture-image_4842146.jpg') no-repeat center center fixed;
+            background-size: cover;
             color: #fff; /* Texto branco para contraste */
         }
         .container {
-            background-color: #2e8b57; /* Fundo verde secundário para container */
+            background-color: rgba(46, 139, 87, 0.9); /* Fundo verde secundário para container com transparência */
             padding: 20px;
             border-radius: 10px;
         }
         .form-group img {
-            max-width: 100%;
+            max-width: 10%; /* Reduzir bastante o tamanho da imagem */
             height: auto;
         }
     </style>
 </head>
 <body>
+<div class="form-group">
+    <!-- Exemplo de imagem decorativa -->
+    <img src="https://w7.pngwing.com/pngs/571/526/png-transparent-physician-medicine-health-care-logo-physical-therapy-symbol-miscellaneous-text-logo-thumbnail.png"
+         alt="Imagem clinica"> 
+</div>
 <div class="container mt-5">
     <h2>Cadastro de Paciente</h2>
     <form action="processa_cadastro.php" method="post">
@@ -53,13 +59,11 @@
                 <option value="Outro">Outro</option>
             </select>
         </div>
-        <!-- Exemplo de imagem decorativa -->
-        <div class="form-group">
-            <img src="https://w7.pngwing.com/pngs/571/526/png-transparent-physician-medicine-health-care-logo-physical-therapy-symbol-miscellaneous-text-logo-thumbnail.png" alt="Imagem clinica">
-        </div>
         <button type="submit" class="btn btn-primary">Cadastrar</button>
     </form>
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
